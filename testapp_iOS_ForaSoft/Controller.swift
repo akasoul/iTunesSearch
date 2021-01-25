@@ -43,6 +43,7 @@ class firstTabController: UIViewController,UISearchBarDelegate,UICollectionViewD
     let collectionViewLayout=UICollectionViewLayout()
     var response: jsonStruct?
     var albums: [String]=[]
+    var artworks:[UIImage]=[]
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //if(self.albums != nil){
             return self.albums.count
@@ -64,8 +65,10 @@ class firstTabController: UIViewController,UISearchBarDelegate,UICollectionViewD
             // Configure the cell
         //cell.frame=CGRect(x: 0, y: 0, width: 100, height: 100)
         cell.backgroundColor=UIColor(red: CGFloat.random(in: 0...1), green: CGFloat.random(in: 0...1), blue: CGFloat.random(in: 0...1), alpha: 1)
+        cell.backgroundView=UIImageView(image: self.artworks[indexPath.last!])
+        cell.label.text=String(indexPath.last!)
         //cell.config(text: "DSds")
-        cell.setText(text: "W")
+        //cell.setText(text: "W")
 //        let label=UILabel()
 //        label.bounds=cell.bounds
 //        label.text=self.albums[indexPath.last!]
@@ -81,10 +84,13 @@ class firstTabController: UIViewController,UISearchBarDelegate,UICollectionViewD
         return 50
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 50
+        return 25
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 200, height: 200)
+    }
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        print(indexPath.last)
     }
     //let collectionView=UICollectionView(frame: CGRect(x: self.view.frame.height*0.2, y: 0, width: self.view.frame.width, height: self.view.frame.height*0.8), collectionViewLayout: collectionViewLayout)
     override func viewDidLoad() {
@@ -144,7 +150,7 @@ class firstTabController: UIViewController,UISearchBarDelegate,UICollectionViewD
                 sleep(1)
             }
             for i in 0..<self.response!.results.count{
-                if(self.response!.results[i].collectionName != nil){
+                if(self.response!.results[i].collectionName != nil && self.response!.results[i].artworkUrl100 != nil){
                 var append=true
                 for j in 0..<self.albums.count{
                     if(self.albums[j]==self.response!.results[i].collectionName){
@@ -153,6 +159,24 @@ class firstTabController: UIViewController,UISearchBarDelegate,UICollectionViewD
                 }
                 if(append){
                     self.albums.append(self.response!.results[i].collectionName!)
+                    let url=URL(string: self.response!.results[i].artworkUrl100!)!
+                    var img: UIImage?
+                    let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+                        guard let data = data else { return }
+                        img=UIImage(data: data)
+                        do{
+                            self.response = try JSONDecoder().decode(jsonStruct.self, from: answer.data(using: .utf8)!)
+                        }
+                        catch{
+                            print(error)
+                        }
+                    }
+                    
+                    task.resume()
+                    while !task.progress.isFinished{
+                        sleep(1)
+                    }
+                    self.artworks.append(img!)
                 }
             }
             }

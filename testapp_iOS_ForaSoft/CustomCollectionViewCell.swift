@@ -21,10 +21,14 @@ class CustomCollectionViewCell: UICollectionViewCell {
 }
 
 class customCell: UICollectionViewCell{
-    var label: UILabel!
+    var label: UILabel = {
+        let label = UILabel()
+        label.text=""
+        return label
+    }()
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        //self.contentView.addSubview(self.label)
+        self.contentView.addSubview(self.label)
     }
     func setText(text:String){
         self.label=UILabel(frame: .zero)
