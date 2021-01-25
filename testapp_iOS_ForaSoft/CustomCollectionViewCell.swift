@@ -19,3 +19,19 @@ class CustomCollectionViewCell: UICollectionViewCell {
     }
 
 }
+
+class customCell: UICollectionViewCell{
+    var label: UILabel!
+    override init(frame: CGRect) {
+        super.init(frame: .zero)
+        //self.contentView.addSubview(self.label)
+    }
+    func setText(text:String){
+        self.label=UILabel(frame: .zero)
+        self.label.text=text
+        self.contentView.addSubview(self.label)}
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}

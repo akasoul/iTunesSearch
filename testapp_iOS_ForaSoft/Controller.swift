@@ -59,13 +59,13 @@ class firstTabController: UIViewController,UISearchBarDelegate,UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let offset = indexPath.last! * 110
         let cell = collectionView
-              .dequeueReusableCell(withReuseIdentifier: "reuseIdentifier", for: indexPath) as! CustomCollectionViewCell
+              .dequeueReusableCell(withReuseIdentifier: "reuseIdentifier", for: indexPath) as! customCell
             //cell.backgroundColor = .black
             // Configure the cell
         //cell.frame=CGRect(x: 0, y: 0, width: 100, height: 100)
         cell.backgroundColor=UIColor(red: CGFloat.random(in: 0...1), green: CGFloat.random(in: 0...1), blue: CGFloat.random(in: 0...1), alpha: 1)
-        cell.config(text: "DSds")
-        
+        //cell.config(text: "DSds")
+        cell.setText(text: "W")
 //        let label=UILabel()
 //        label.bounds=cell.bounds
 //        label.text=self.albums[indexPath.last!]
@@ -112,7 +112,7 @@ class firstTabController: UIViewController,UISearchBarDelegate,UICollectionViewD
         collectionView.dataSource=self
         collectionView.backgroundColor=UIColor.lightGray
         //collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "reuseIdentifier")
-        collectionView.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: "reuseIdentifier")
+        collectionView.register(customCell.self, forCellWithReuseIdentifier: "reuseIdentifier")
         self.view.addSubview(self.searchBar)
         self.view.addSubview(collectionView)
     }
