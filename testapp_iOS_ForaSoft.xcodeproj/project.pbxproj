@@ -13,6 +13,7 @@
 		310C581325BB45AE0062DD28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 310C581225BB45AE0062DD28 /* Assets.xcassets */; };
 		310C581625BB45AE0062DD28 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 310C581525BB45AE0062DD28 /* Preview Assets.xcassets */; };
 		310C581925BB45AE0062DD28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 310C581725BB45AE0062DD28 /* LaunchScreen.storyboard */; };
+		310C582225BB45C80062DD28 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310C582125BB45C80062DD28 /* Controller.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		310C581525BB45AE0062DD28 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		310C581825BB45AE0062DD28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		310C581A25BB45AE0062DD28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		310C582125BB45C80062DD28 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				310C581725BB45AE0062DD28 /* LaunchScreen.storyboard */,
 				310C581A25BB45AE0062DD28 /* Info.plist */,
 				310C581425BB45AE0062DD28 /* Preview Content */,
+				310C582125BB45C80062DD28 /* Controller.swift */,
 			);
 			path = testapp_iOS_ForaSoft;
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 				310C580D25BB45AD0062DD28 /* AppDelegate.swift in Sources */,
 				310C580F25BB45AD0062DD28 /* SceneDelegate.swift in Sources */,
 				310C581125BB45AD0062DD28 /* ContentView.swift in Sources */,
+				310C582225BB45C80062DD28 /* Controller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
