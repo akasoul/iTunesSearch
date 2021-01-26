@@ -25,7 +25,7 @@ class tabController: UITabBarController,UITabBarControllerDelegate{
         self.delegate=self
         
         
-  }
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.firstTabView.tabBarItem=UITabBarItem(tabBarSystemItem: .search, tag: 0)
@@ -33,81 +33,109 @@ class tabController: UITabBarController,UITabBarControllerDelegate{
         self.viewControllers=[self.firstTabView,self.secondTabView]
         self.view.backgroundColor=UIColor.white
         print(self.view.frame)
- }
+    }
 }
 
-class firstTabController: UIViewController,UISearchBarDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
-
+class firstTabController: UINavigationController,UISearchBarDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+    let info = testViewController()
     let searchBar=UISearchBar()
     var collectionView: UICollectionView! = nil
     let collectionViewLayout=UICollectionViewLayout()
     var response: jsonStruct?
     var albums: [String]=[]
-    var artworks:[UIImage]=[]
+    var artworks:[UIImage?]=[]
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //if(self.albums != nil){
-            return self.albums.count
-        //}
-        return 0
+        return self.albums.count
     }
+    
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
+    
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets.init(top: 50, left: 50, bottom: 50, right: 50)
     }
-
+    
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let offset = indexPath.last! * 110
         let cell = collectionView
-              .dequeueReusableCell(withReuseIdentifier: "reuseIdentifier", for: indexPath) as! customCell
-            //cell.backgroundColor = .black
-            // Configure the cell
-        //cell.frame=CGRect(x: 0, y: 0, width: 100, height: 100)
+            .dequeueReusableCell(withReuseIdentifier: "reuseIdentifier", for: indexPath) as! customCell
+
+        cell.contentConfiguration=UIListContentConfiguration.subtitleCell()
         cell.backgroundColor=UIColor(red: CGFloat.random(in: 0...1), green: CGFloat.random(in: 0...1), blue: CGFloat.random(in: 0...1), alpha: 1)
         cell.backgroundView=UIImageView(image: self.artworks[indexPath.last!])
         cell.label.text=String(indexPath.last!)
-        //cell.config(text: "DSds")
-        //cell.setText(text: "W")
-//        let label=UILabel()
-//        label.bounds=cell.bounds
-//        label.text=self.albums[indexPath.last!]
-//        label.text=String(indexPath.last!)
-//        label.textAlignment=NSTextAlignment.center
-//        label.tag=999
-//        cell.contentView.addSubview(label)
 
         print(indexPath)
         return cell
     }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 50
+    
+    
+    func indexTitles(for collectionView: UICollectionView) -> [String]? {
+        return self.albums
     }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 25
+    }
+    
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 25
     }
+    
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 200, height: 200)
+        return CGSize(width: 100, height: 100)
     }
+    
+    
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        print("selected at: ")
+        print(indexPath.first)
         print(indexPath.last)
+        print(indexPath.row)
+        
+        //self.showDetailViewController(self.info, sender: nil)
+//        let newvc=UIViewController()
+//        newvc.view=UIView(frame: self.view.frame)
+//        newvc.view.backgroundColor = .yellow
+//        newvc.navigationController?.navigationItem.leftBarButtonItem=UIBarButtonItem(title: "back")
+//        self.pushViewController(newvc, animated: true)
+        
+        
+        let rootVC=testViewController()
+        rootVC.title="test title"
+        let navVC=UINavigationController(rootViewController: rootVC)
+        //navVC.view=UIView()
+        //navVC.view.backgroundColor = .purple
+        navVC.modalPresentationStyle = .fullScreen
+        rootVC.navigationItem.leftBarButtonItem=UIBarButtonItem(title: "back")
+        present(navVC, animated: true)
     }
-    //let collectionView=UICollectionView(frame: CGRect(x: self.view.frame.height*0.2, y: 0, width: self.view.frame.width, height: self.view.frame.height*0.8), collectionViewLayout: collectionViewLayout)
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         self.searchBar.delegate=self
-        //self.view.backgroundColor=UIColor.red
         self.searchBar.frame=CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height*0.2)
-
+        
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-            layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
-            layout.itemSize = CGSize(width: 200, height: 200)
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
+        layout.itemSize = CGSize(width: 100, height: 100)
         layout.scrollDirection = .horizontal
         
         let tabBarHeight=(parent as! UITabBarController).tabBar.frame.height
         print(tabBarHeight)
         self.collectionView=UICollectionView(frame: CGRect(x: 0, y: self.view.frame.height*0.2, width: self.view.frame.width, height: self.view.frame.height*0.8-tabBarHeight), collectionViewLayout: layout)
-        collectionView.autoresizingMask=[.flexibleBottomMargin]
         
         collectionView.isScrollEnabled=true
         collectionView.scrollIndicatorInsets = .zero
@@ -117,16 +145,22 @@ class firstTabController: UIViewController,UISearchBarDelegate,UICollectionViewD
         collectionView.delegate=self
         collectionView.dataSource=self
         collectionView.backgroundColor=UIColor.lightGray
-        //collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "reuseIdentifier")
         collectionView.register(customCell.self, forCellWithReuseIdentifier: "reuseIdentifier")
+        
+        self.info.view.frame=self.view.frame
+        
+        print(self.navigationController)
         self.view.addSubview(self.searchBar)
         self.view.addSubview(collectionView)
     }
+    
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        //print(self.searchBar.text)
+
     }
+    
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        //print("click")
         if(self.searchBar.text != nil){
             var path = "https://itunes.apple.com/search?term="
             (parent as! tabController).hst.arr.append(self.searchBar.text!)
@@ -149,40 +183,64 @@ class firstTabController: UIViewController,UISearchBarDelegate,UICollectionViewD
             while !task.progress.isFinished{
                 sleep(1)
             }
+            var imgLinks=[String]()
             for i in 0..<self.response!.results.count{
                 if(self.response!.results[i].collectionName != nil && self.response!.results[i].artworkUrl100 != nil){
-                var append=true
-                for j in 0..<self.albums.count{
-                    if(self.albums[j]==self.response!.results[i].collectionName){
-                        append=false
+                    var append=true
+                    for j in 0..<self.albums.count{
+                        if(self.albums[j]==self.response!.results[i].collectionName){
+                            append=false
+                        }
+                    }
+                    if(append){
+                        self.albums.append(self.response!.results[i].collectionName!)
+                        imgLinks.append(self.response!.results[i].artworkUrl100!)
+                        
                     }
                 }
-                if(append){
-                    self.albums.append(self.response!.results[i].collectionName!)
-                    let url=URL(string: self.response!.results[i].artworkUrl100!)!
+            }
+            
+            self.artworks=[UIImage?].init(repeating: nil, count: self.albums.count)
+            let group=DispatchGroup()
+            group.enter()
+            for i in 0..<self.artworks.count{
+                DispatchQueue.global().async{
+                    let url=URL(string: imgLinks[i])!
                     var img: UIImage?
-                    let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
-                        guard let data = data else { return }
-                        img=UIImage(data: data)
-                        do{
-                            self.response = try JSONDecoder().decode(jsonStruct.self, from: answer.data(using: .utf8)!)
-                        }
-                        catch{
-                            print(error)
-                        }
+                    var imgData: Data?
+//                    let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+//                        guard let data = data else { return }
+//                        img=UIImage(data: data)
+//                        do{
+//                            self.response = try JSONDecoder().decode(jsonStruct.self, from: answer.data(using: .utf8)!)
+//                        }
+//                        catch{
+//                            print(error)
+//                        }
+//                    }
+//
+//                    task.resume()
+//                    while !task.progress.isFinished{
+//                        sleep(1)
+//                    }
+                    do{
+                    imgData = try Data(contentsOf: url)
                     }
-                    
-                    task.resume()
-                    while !task.progress.isFinished{
-                        sleep(1)
+                    catch{
                     }
-                    self.artworks.append(img!)
+                    if(imgData != nil){
+                        img=UIImage(data: imgData!)
+                    }
+                    self.artworks[i]=img
+                    //group.leave()
+                    print("exit thread")
+                    DispatchQueue.main.sync{
+                    self.view.endEditing(true)
+                    self.viewDidLoad()
+                    }
                 }
             }
-            }
-            //print(self.albums)
-            self.view.endEditing(true)
-            self.viewDidLoad()
+            
         }
     }
 }
@@ -223,3 +281,15 @@ struct jsonStruct: Encodable,Decodable {
 }
 
 
+class testViewController: UIViewController{
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationItem.leftBarButtonItem=UIBarButtonItem(title: "Back", style: .done, target: self, action: #selector(self.close))
+        print("tvc didload")
+        self.view=UIView(frame: .zero)
+        self.view.backgroundColor=UIColor.red
+    }
+    @objc func close(){
+        self.dismiss(animated: true)
+    }
+}
