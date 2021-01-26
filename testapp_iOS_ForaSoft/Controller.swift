@@ -26,13 +26,24 @@ class tabController: UITabBarController,UITabBarControllerDelegate{
         
         
     }
+    func showPopup(){
+        
+        let rootVC=testViewController()
+        rootVC.title="test title"
+        let navVC=UINavigationController(rootViewController: rootVC)
+        navVC.modalPresentationStyle = .popover
+        navVC.modalTransitionStyle = .coverVertical
+        navVC.view.frame=CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height*0.5)
+        rootVC.navigationItem.leftBarButtonItem=UIBarButtonItem(title: "back")
+        present(navVC, animated: true)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.firstTabView.tabBarItem=UITabBarItem(tabBarSystemItem: .search, tag: 0)
         self.secondTabView.tabBarItem=UITabBarItem(tabBarSystemItem: .history, tag: 1)
         self.viewControllers=[self.firstTabView,self.secondTabView]
         self.view.backgroundColor=UIColor.white
-        print(self.view.frame)
     }
 }
 
@@ -44,7 +55,8 @@ class firstTabController: UINavigationController,UISearchBarDelegate,UICollectio
     var response: jsonStruct?
     var albums: [String]=[]
     var artworks:[UIImage?]=[]
-    
+    var showCollection=true
+
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.albums.count
@@ -64,12 +76,18 @@ class firstTabController: UINavigationController,UISearchBarDelegate,UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let offset = indexPath.last! * 110
         let cell = collectionView
-            .dequeueReusableCell(withReuseIdentifier: "reuseIdentifier", for: indexPath) as! customCell
+            .dequeueReusableCell(withReuseIdentifier: "reuseIdentifier", for: indexPath)
 
         cell.contentConfiguration=UIListContentConfiguration.subtitleCell()
         cell.backgroundColor=UIColor(red: CGFloat.random(in: 0...1), green: CGFloat.random(in: 0...1), blue: CGFloat.random(in: 0...1), alpha: 1)
         cell.backgroundView=UIImageView(image: self.artworks[indexPath.last!])
-        cell.label.text=String(indexPath.last!)
+        
+        let label=UILabel()
+        label.bounds=cell.bounds
+        label.textAlignment = .right
+        label.text=self.albums[indexPath.last!]
+        cell.addSubview(label)
+        
 
         print(indexPath)
         return cell
@@ -102,6 +120,7 @@ class firstTabController: UINavigationController,UISearchBarDelegate,UICollectio
         print(indexPath.last)
         print(indexPath.row)
         
+        (self.parent as! tabController).showPopup()
         //self.showDetailViewController(self.info, sender: nil)
 //        let newvc=UIViewController()
 //        newvc.view=UIView(frame: self.view.frame)
@@ -109,15 +128,18 @@ class firstTabController: UINavigationController,UISearchBarDelegate,UICollectio
 //        newvc.navigationController?.navigationItem.leftBarButtonItem=UIBarButtonItem(title: "back")
 //        self.pushViewController(newvc, animated: true)
         
+//
+//        let rootVC=testViewController()
+//        rootVC.title="test title"
+//        let navVC=UINavigationController(rootViewController: rootVC)
+//        //navVC.view=UIView()
+//        //navVC.view.backgroundColor = .purple
+//        navVC.modalPresentationStyle = .fullScreen
+//        rootVC.navigationItem.leftBarButtonItem=UIBarButtonItem(title: "back")
+//        present(navVC, animated: true)
         
-        let rootVC=testViewController()
-        rootVC.title="test title"
-        let navVC=UINavigationController(rootViewController: rootVC)
-        //navVC.view=UIView()
-        //navVC.view.backgroundColor = .purple
-        navVC.modalPresentationStyle = .fullScreen
-        rootVC.navigationItem.leftBarButtonItem=UIBarButtonItem(title: "back")
-        present(navVC, animated: true)
+        //self.showCollection=false
+        //self.viewDidLoad()
     }
 
     
@@ -135,7 +157,9 @@ class firstTabController: UINavigationController,UISearchBarDelegate,UICollectio
         
         let tabBarHeight=(parent as! UITabBarController).tabBar.frame.height
         print(tabBarHeight)
-        self.collectionView=UICollectionView(frame: CGRect(x: 0, y: self.view.frame.height*0.2, width: self.view.frame.width, height: self.view.frame.height*0.8-tabBarHeight), collectionViewLayout: layout)
+        let collectionFrame=CGRect(x: 0, y: self.view.frame.height*0.2, width: self.view.frame.width, height: self.view.frame.height*0.8-tabBarHeight)
+        
+        self.collectionView=UICollectionView(frame: collectionFrame, collectionViewLayout: layout)
         
         collectionView.isScrollEnabled=true
         collectionView.scrollIndicatorInsets = .zero
@@ -145,16 +169,20 @@ class firstTabController: UINavigationController,UISearchBarDelegate,UICollectio
         collectionView.delegate=self
         collectionView.dataSource=self
         collectionView.backgroundColor=UIColor.lightGray
-        collectionView.register(customCell.self, forCellWithReuseIdentifier: "reuseIdentifier")
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "reuseIdentifier")
+            self.view.addSubview(collectionView)
         
-        self.info.view.frame=self.view.frame
+        
+        
         
         print(self.navigationController)
         self.view.addSubview(self.searchBar)
-        self.view.addSubview(collectionView)
     }
     
-    
+    func closeInfoView(){
+        self.showCollection=true
+        self.viewDidLoad()
+    }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 
     }
@@ -292,4 +320,31 @@ class testViewController: UIViewController{
     @objc func close(){
         self.dismiss(animated: true)
     }
+}
+
+class infoViewController: UIViewController{
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view=UIView(frame: .zero)
+        self.view.backgroundColor = .orange
+            let navVC=UINavigationController(rootViewController: self)
+        navVC.modalPresentationStyle = .fullScreen
+        navVC.navigationItem.leftBarButtonItem=UIBarButtonItem(title: "back")
+        self.view.addSubview(navVC.view)
+    }
+}
+
+
+
+class popupView: UIView {
+  
+     override init(frame: CGRect)   {
+         super.init(frame: frame)
+        self.backgroundColor = .orange
+     }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+   
 }
