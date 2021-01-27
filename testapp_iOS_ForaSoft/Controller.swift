@@ -50,13 +50,12 @@ class tabController: UITabBarController,UITabBarControllerDelegate{
 class firstTabController: UINavigationController,UISearchBarDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     let info = testViewController()
     let searchBar=UISearchBar()
-    var collectionView: UICollectionView! = nil
     let collectionViewLayout=UICollectionViewLayout()
     var response: jsonStruct?
     var albums: [String]=[]
     var artworks:[UIImage?]=[]
     var showCollection=true
-
+    let reuseCellId="cell"
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.albums.count
@@ -76,41 +75,40 @@ class firstTabController: UINavigationController,UISearchBarDelegate,UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let offset = indexPath.last! * 110
         let cell = collectionView
-            .dequeueReusableCell(withReuseIdentifier: "reuseIdentifier", for: indexPath)
-
-        cell.contentConfiguration=UIListContentConfiguration.subtitleCell()
-        cell.backgroundColor=UIColor(red: CGFloat.random(in: 0...1), green: CGFloat.random(in: 0...1), blue: CGFloat.random(in: 0...1), alpha: 1)
-        cell.backgroundView=UIImageView(image: self.artworks[indexPath.last!])
+            .dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCell2
+        if(self.artworks[indexPath.item] != nil){
+            cell.data=CustomData(title: self.albums[indexPath.item], url: "dsds", backgroundImage: self.artworks[indexPath.item]!)
+        }
+            //cell.contentConfiguration=UIListContentConfiguration.subtitleCell()
+//        cell.backgroundColor=UIColor(red: CGFloat.random(in: 0...1), green: CGFloat.random(in: 0...1), blue: CGFloat.random(in: 0...1), alpha: 1)
+//        cell.backgroundView=UIImageView(image: self.artworks[indexPath.last!])
+//
+//        let label=UILabel()
+//        label.bounds=cell.bounds
+//        label.textAlignment = .right
+//        label.text=self.albums[indexPath.last!]
+//        cell.addSubview(label)
         
-        let label=UILabel()
-        label.bounds=cell.bounds
-        label.textAlignment = .right
-        label.text=self.albums[indexPath.last!]
-        cell.addSubview(label)
-        
 
-        print(indexPath)
+        print(indexPath.item)
         return cell
     }
     
     
-    func indexTitles(for collectionView: UICollectionView) -> [String]? {
-        return self.albums
-    }
+
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 25
+        return 50
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 25
+        return 0
     }
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 100)
+        return CGSize(width: 200, height: 200)
     }
     
     
@@ -142,6 +140,14 @@ class firstTabController: UINavigationController,UISearchBarDelegate,UICollectio
         //self.viewDidLoad()
     }
 
+    let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.register(CustomCell2.self, forCellWithReuseIdentifier: "cell")
+        return cv
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -159,7 +165,15 @@ class firstTabController: UINavigationController,UISearchBarDelegate,UICollectio
         print(tabBarHeight)
         let collectionFrame=CGRect(x: 0, y: self.view.frame.height*0.2, width: self.view.frame.width, height: self.view.frame.height*0.8-tabBarHeight)
         
-        self.collectionView=UICollectionView(frame: collectionFrame, collectionViewLayout: layout)
+        
+        let customCellNib=UINib(nibName: "CustomCell2", bundle: .main)
+        
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.register(customCellNib, forCellWithReuseIdentifier: "cell")
+        let collectionView=UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(customCellNib, forCellWithReuseIdentifier: "cell")
+        collectionView.frame=collectionFrame
         
         collectionView.isScrollEnabled=true
         collectionView.scrollIndicatorInsets = .zero
@@ -169,8 +183,7 @@ class firstTabController: UINavigationController,UISearchBarDelegate,UICollectio
         collectionView.delegate=self
         collectionView.dataSource=self
         collectionView.backgroundColor=UIColor.lightGray
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "reuseIdentifier")
-            self.view.addSubview(collectionView)
+        view.addSubview(collectionView)
         
         
         
@@ -193,7 +206,7 @@ class firstTabController: UINavigationController,UISearchBarDelegate,UICollectio
             var path = "https://itunes.apple.com/search?term="
             (parent as! tabController).hst.arr.append(self.searchBar.text!)
             path.append(self.searchBar.text!)
-            path.append("&country=ru")
+            path.append("&country=ru&limit=100000")
             let url = URL(string: path)!
             var answer=""
             let task = URLSession.shared.dataTask(with: url) {(data, response, error) in

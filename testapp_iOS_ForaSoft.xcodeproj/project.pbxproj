@@ -14,8 +14,9 @@
 		310C581625BB45AE0062DD28 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 310C581525BB45AE0062DD28 /* Preview Assets.xcassets */; };
 		310C581925BB45AE0062DD28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 310C581725BB45AE0062DD28 /* LaunchScreen.storyboard */; };
 		310C582225BB45C80062DD28 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310C582125BB45C80062DD28 /* Controller.swift */; };
-		CE02909925BEFBAE00128B22 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE02909725BEFBAE00128B22 /* CustomCollectionViewCell.swift */; };
-		CE02909A25BEFBAE00128B22 /* CustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE02909825BEFBAE00128B22 /* CustomCollectionViewCell.xib */; };
+		CEEDA85B25C13753008BBC76 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEDA85A25C13753008BBC76 /* CustomCell.swift */; };
+		CEEDA86025C16A02008BBC76 /* CustomCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEDA85E25C16A02008BBC76 /* CustomCell2.swift */; };
+		CEEDA86125C16A02008BBC76 /* CustomCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEEDA85F25C16A02008BBC76 /* CustomCell2.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,8 +29,9 @@
 		310C581825BB45AE0062DD28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		310C581A25BB45AE0062DD28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		310C582125BB45C80062DD28 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
-		CE02909725BEFBAE00128B22 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
-		CE02909825BEFBAE00128B22 /* CustomCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCollectionViewCell.xib; sourceTree = "<group>"; };
+		CEEDA85A25C13753008BBC76 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		CEEDA85E25C16A02008BBC76 /* CustomCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell2.swift; sourceTree = "<group>"; };
+		CEEDA85F25C16A02008BBC76 /* CustomCell2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCell2.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,9 @@
 			isa = PBXGroup;
 			children = (
 				310C580C25BB45AD0062DD28 /* AppDelegate.swift */,
+				CEEDA85E25C16A02008BBC76 /* CustomCell2.swift */,
+				CEEDA85F25C16A02008BBC76 /* CustomCell2.xib */,
+				CEEDA85A25C13753008BBC76 /* CustomCell.swift */,
 				310C580E25BB45AD0062DD28 /* SceneDelegate.swift */,
 				310C581025BB45AD0062DD28 /* ContentView.swift */,
 				310C581225BB45AE0062DD28 /* Assets.xcassets */,
@@ -70,8 +75,6 @@
 				310C581A25BB45AE0062DD28 /* Info.plist */,
 				310C581425BB45AE0062DD28 /* Preview Content */,
 				310C582125BB45C80062DD28 /* Controller.swift */,
-				CE02909725BEFBAE00128B22 /* CustomCollectionViewCell.swift */,
-				CE02909825BEFBAE00128B22 /* CustomCollectionViewCell.xib */,
 			);
 			path = testapp_iOS_ForaSoft;
 			sourceTree = "<group>";
@@ -142,9 +145,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				310C581925BB45AE0062DD28 /* LaunchScreen.storyboard in Resources */,
+				CEEDA86125C16A02008BBC76 /* CustomCell2.xib in Resources */,
 				310C581625BB45AE0062DD28 /* Preview Assets.xcassets in Resources */,
 				310C581325BB45AE0062DD28 /* Assets.xcassets in Resources */,
-				CE02909A25BEFBAE00128B22 /* CustomCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,8 +159,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				310C580D25BB45AD0062DD28 /* AppDelegate.swift in Sources */,
-				CE02909925BEFBAE00128B22 /* CustomCollectionViewCell.swift in Sources */,
 				310C580F25BB45AD0062DD28 /* SceneDelegate.swift in Sources */,
+				CEEDA85B25C13753008BBC76 /* CustomCell.swift in Sources */,
+				CEEDA86025C16A02008BBC76 /* CustomCell2.swift in Sources */,
 				310C581125BB45AD0062DD28 /* ContentView.swift in Sources */,
 				310C582225BB45C80062DD28 /* Controller.swift in Sources */,
 			);
