@@ -20,19 +20,25 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q91-o4-GfO">
                         <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bZA-gw-6Cw">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bZA-gw-6Cw">
                                 <rect key="frame" x="50" y="0.0" width="100" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OS1-kp-4cs">
-                                <rect key="frame" x="79" y="112" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OS1-kp-4cs">
+                                <rect key="frame" x="0.0" y="112" width="200" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="bZA-gw-6Cw" secondAttribute="trailing" constant="50" id="7vU-MF-Uso"/>
+                            <constraint firstItem="bZA-gw-6Cw" firstAttribute="leading" secondItem="Q91-o4-GfO" secondAttribute="leading" constant="50" id="FnS-HW-7nM"/>
+                            <constraint firstAttribute="trailing" secondItem="OS1-kp-4cs" secondAttribute="trailing" id="KNT-Q5-2dH"/>
+                            <constraint firstItem="OS1-kp-4cs" firstAttribute="top" secondItem="bZA-gw-6Cw" secondAttribute="bottom" constant="12" id="Pcj-7A-ekR"/>
+                            <constraint firstItem="bZA-gw-6Cw" firstAttribute="top" secondItem="Q91-o4-GfO" secondAttribute="top" constant="50" id="QUS-XQ-nF2"/>
+                            <constraint firstItem="OS1-kp-4cs" firstAttribute="leading" secondItem="Q91-o4-GfO" secondAttribute="leading" id="rR3-eS-cyC"/>
+                        </constraints>
                     </view>
                 </subviews>
             </view>

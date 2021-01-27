@@ -24,21 +24,8 @@ class CustomCell2: UICollectionViewCell {
     }
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.view.awakeFromNib()
-        self.lbl.awakeFromNib()
-        self.img.awakeFromNib()
         // Initialization code
 
     }
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.awakeFromNib()
-        self.view=UIView()
-        self.lbl=UILabel()
-        self.img=UIImageView()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+  
 }

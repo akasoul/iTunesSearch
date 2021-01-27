@@ -54,6 +54,7 @@ class firstTabController: UINavigationController,UISearchBarDelegate,UICollectio
     var response: jsonStruct?
     var albums: [String]=[]
     var artworks:[UIImage?]=[]
+    var albumsId:[Int]=[]
     var showCollection=true
     let reuseCellId="cell"
     
@@ -205,7 +206,7 @@ class firstTabController: UINavigationController,UISearchBarDelegate,UICollectio
         if(self.searchBar.text != nil){
             var path = "https://itunes.apple.com/search?term="
             (parent as! tabController).hst.arr.append(self.searchBar.text!)
-            path.append(self.searchBar.text!)
+            path.append(self.searchBar.text!.replacingOccurrences(of: " ", with: "%20"))
             path.append("&country=ru&limit=100000")
             let url = URL(string: path)!
             var answer=""
@@ -235,6 +236,7 @@ class firstTabController: UINavigationController,UISearchBarDelegate,UICollectio
                     }
                     if(append){
                         self.albums.append(self.response!.results[i].collectionName!)
+                        self.albumsId.append(self.response!.results[i].collectionId!)
                         imgLinks.append(self.response!.results[i].artworkUrl100!)
                         
                     }
@@ -242,28 +244,15 @@ class firstTabController: UINavigationController,UISearchBarDelegate,UICollectio
             }
             
             self.artworks=[UIImage?].init(repeating: nil, count: self.albums.count)
+            
             let group=DispatchGroup()
             group.enter()
+            
             for i in 0..<self.artworks.count{
                 DispatchQueue.global().async{
                     let url=URL(string: imgLinks[i])!
                     var img: UIImage?
                     var imgData: Data?
-//                    let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
-//                        guard let data = data else { return }
-//                        img=UIImage(data: data)
-//                        do{
-//                            self.response = try JSONDecoder().decode(jsonStruct.self, from: answer.data(using: .utf8)!)
-//                        }
-//                        catch{
-//                            print(error)
-//                        }
-//                    }
-//
-//                    task.resume()
-//                    while !task.progress.isFinished{
-//                        sleep(1)
-//                    }
                     do{
                     imgData = try Data(contentsOf: url)
                     }
@@ -273,7 +262,6 @@ class firstTabController: UINavigationController,UISearchBarDelegate,UICollectio
                         img=UIImage(data: imgData!)
                     }
                     self.artworks[i]=img
-                    //group.leave()
                     print("exit thread")
                     DispatchQueue.main.sync{
                     self.view.endEditing(true)
