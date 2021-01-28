@@ -26,6 +26,7 @@ struct jsonStruct: Encodable,Decodable {
         let trackTimeMillis: Int?
         let country: String?
         let currency: String?
+        let primaryGenreName: String?
     }
     let resultCount: Int
     let results: [Result]
@@ -40,10 +41,10 @@ struct album{
     let cover: UIImage?
     let id: Int
     var songs: [song]?
+    let genre: String
+    let releaseDate: String
     
-    static var placeholder: Self{
-        return album(name: "", cover: nil, id: 0, songs: nil)
-    }
+
 }
 
 class Model{
@@ -150,7 +151,7 @@ class Model{
                                 img=UIImage(data: imgData!)
                             }
                             
-                            self.albums.append(album(name: self.response!.results[i].collectionName!, cover: img, id: self.response!.results[i].collectionId!, songs: nil))
+                            self.albums.append(album(name: self.response!.results[i].collectionName!, cover: img, id: self.response!.results[i].collectionId!, songs: nil, genre: self.response!.results[i].primaryGenreName!,releaseDate: self.response!.results[i].releaseDate!))
                         }
                     }
                 }
@@ -188,7 +189,7 @@ class Model{
                         if(albumsResponse != nil){
                             var songs: [album.song]=[]
                             for j in 0..<albumsResponse!.results.count{
-                                if(albumsResponse!.results[j].collectionId != nil){
+                                if(albumsResponse!.results[j].collectionId != nil && i<self.albums.count){
                                     if(albumsResponse!.results[j].collectionId! == self.albums[i].id){
                                         if(albumsResponse!.results[j].trackName != nil && albumsResponse!.results[j].trackTimeMillis != nil){
                                             songs.append(album.song(name: albumsResponse!.results[j].trackName!, length: albumsResponse!.results[j].trackTimeMillis!))

@@ -18,6 +18,8 @@
 		316CE20325C27CD0003AAD1D /* FirstTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316CE20225C27CD0003AAD1D /* FirstTabController.swift */; };
 		316CE20725C28745003AAD1D /* SecondTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316CE20625C28745003AAD1D /* SecondTabController.swift */; };
 		316CE20B25C28C6A003AAD1D /* AlbumInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316CE20A25C28C6A003AAD1D /* AlbumInfoController.swift */; };
+		CE4E2A5425C2D64300EF6AE8 /* PopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4E2A5225C2D64300EF6AE8 /* PopUpVC.swift */; };
+		CE4E2A5525C2D64300EF6AE8 /* PopUpVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE4E2A5325C2D64300EF6AE8 /* PopUpVC.xib */; };
 		CEEDA85B25C13753008BBC76 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEDA85A25C13753008BBC76 /* CustomCell.swift */; };
 		CEEDA86025C16A02008BBC76 /* CustomCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEDA85E25C16A02008BBC76 /* CustomCell2.swift */; };
 		CEEDA86125C16A02008BBC76 /* CustomCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEEDA85F25C16A02008BBC76 /* CustomCell2.xib */; };
@@ -37,6 +39,8 @@
 		316CE20225C27CD0003AAD1D /* FirstTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTabController.swift; sourceTree = "<group>"; };
 		316CE20625C28745003AAD1D /* SecondTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTabController.swift; sourceTree = "<group>"; };
 		316CE20A25C28C6A003AAD1D /* AlbumInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumInfoController.swift; sourceTree = "<group>"; };
+		CE4E2A5225C2D64300EF6AE8 /* PopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpVC.swift; sourceTree = "<group>"; };
+		CE4E2A5325C2D64300EF6AE8 /* PopUpVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopUpVC.xib; sourceTree = "<group>"; };
 		CEEDA85A25C13753008BBC76 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		CEEDA85E25C16A02008BBC76 /* CustomCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell2.swift; sourceTree = "<group>"; };
 		CEEDA85F25C16A02008BBC76 /* CustomCell2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCell2.xib; sourceTree = "<group>"; };
@@ -83,6 +87,8 @@
 				CEEDA85A25C13753008BBC76 /* CustomCell.swift */,
 				310C580E25BB45AD0062DD28 /* SceneDelegate.swift */,
 				310C581025BB45AD0062DD28 /* ContentView.swift */,
+				CE4E2A5225C2D64300EF6AE8 /* PopUpVC.swift */,
+				CE4E2A5325C2D64300EF6AE8 /* PopUpVC.xib */,
 				310C581225BB45AE0062DD28 /* Assets.xcassets */,
 				310C581725BB45AE0062DD28 /* LaunchScreen.storyboard */,
 				310C581A25BB45AE0062DD28 /* Info.plist */,
@@ -156,6 +162,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE4E2A5525C2D64300EF6AE8 /* PopUpVC.xib in Resources */,
 				310C581925BB45AE0062DD28 /* LaunchScreen.storyboard in Resources */,
 				CEEDA86125C16A02008BBC76 /* CustomCell2.xib in Resources */,
 				310C581625BB45AE0062DD28 /* Preview Assets.xcassets in Resources */,
@@ -176,6 +183,7 @@
 				310C580F25BB45AD0062DD28 /* SceneDelegate.swift in Sources */,
 				CEEDA85B25C13753008BBC76 /* CustomCell.swift in Sources */,
 				CEEDA86025C16A02008BBC76 /* CustomCell2.swift in Sources */,
+				CE4E2A5425C2D64300EF6AE8 /* PopUpVC.swift in Sources */,
 				310C581125BB45AD0062DD28 /* ContentView.swift in Sources */,
 				316CE20325C27CD0003AAD1D /* FirstTabController.swift in Sources */,
 				310C582225BB45C80062DD28 /* TabController.swift in Sources */,
@@ -320,7 +328,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"testapp_iOS_ForaSoft/Preview Content\"";
-				DEVELOPMENT_TEAM = 5AWCXD32G9;
+				DEVELOPMENT_TEAM = Q8RBQH7F9Q;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = testapp_iOS_ForaSoft/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -341,7 +349,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"testapp_iOS_ForaSoft/Preview Content\"";
-				DEVELOPMENT_TEAM = 5AWCXD32G9;
+				DEVELOPMENT_TEAM = Q8RBQH7F9Q;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = testapp_iOS_ForaSoft/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

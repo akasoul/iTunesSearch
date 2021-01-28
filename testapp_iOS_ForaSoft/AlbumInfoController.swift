@@ -36,17 +36,19 @@ class AlbumInfoController: UIViewController{
 
         self.view=UIView(frame: .zero)
         self.view.backgroundColor=UIColor.purple
-        let label = UILabel(frame: self.view.frame)
+        let label = UILabel()
+        label.bounds=self.view.bounds
+        
         label.textColor = .black
         label.font = .systemFont(ofSize: 20)
         label.text="SDADASDASDA"
         self.view.addSubview(label)
-        let scrollView=UIScrollView(frame: self.view.frame)
-        let vstack=UIStackView(arrangedSubviews: self.songNames)
-        vstack.frame=self.view.frame
-        vstack.backgroundColor = .white
-        self.view.addSubview(vstack)
-        self.view.addSubview(scrollView)
+//        let scrollView=UIScrollView(frame: self.view.frame)
+//        let vstack=UIStackView(arrangedSubviews: self.songNames)
+//        vstack.frame=self.view.frame
+//        vstack.backgroundColor = .white
+//        self.view.addSubview(vstack)
+//        self.view.addSubview(scrollView)
     }
     @objc func close(){
         self.dismiss(animated: true)

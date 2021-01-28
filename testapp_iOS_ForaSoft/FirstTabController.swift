@@ -63,15 +63,20 @@ class firstTabController: UINavigationController,UISearchBarDelegate,UICollectio
     
     func showPopup(index: Int){
         
-        let rootVC=AlbumInfoController()
-        rootVC.title="test title"
-        let navVC=UINavigationController(rootViewController: rootVC)
-        navVC.modalPresentationStyle = .popover
-        navVC.modalTransitionStyle = .coverVertical
-        navVC.view.frame=CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height*0.5)
-        rootVC.navigationItem.leftBarButtonItem=UIBarButtonItem(title: "fwd")
+        let rootVC=PopUpVC()//nibName: "PopUpVC", bundle: nil)//AlbumInfoController()
+        let bundle=Bundle(for: type(of: rootVC))
+        bundle.loadNibNamed("PopUpVC", owner: rootVC, options: nil)
+        //        let customView=UINib(nibName: "PopUpVC", bundle: .main)
+//        rootVC.view=custom
+
+//        rootVC.title="test title"
+//        let navVC=UINavigationController(rootViewController: rootVC)
+//        navVC.modalPresentationStyle = .popover
+//        navVC.modalTransitionStyle = .coverVertical
+//        navVC.view.frame=CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height*0.5)
+//        rootVC.navigationItem.leftBarButtonItem=UIBarButtonItem(title: "fwd")
         rootVC.album=self.model.albums[index]
-        present(navVC, animated: true)
+        present(rootVC, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
