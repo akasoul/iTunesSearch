@@ -23,8 +23,11 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bZA-gw-6Cw">
                                 <rect key="frame" x="50" y="0.0" width="100" height="100"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OS1-kp-4cs">
-                                <rect key="frame" x="0.0" y="112" width="200" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="clip" numberOfLines="3" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OS1-kp-4cs">
+                                <rect key="frame" x="25" y="112" width="150" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="yyV-BS-E0y"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -34,10 +37,10 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="bZA-gw-6Cw" secondAttribute="trailing" constant="50" id="7vU-MF-Uso"/>
                             <constraint firstItem="bZA-gw-6Cw" firstAttribute="leading" secondItem="Q91-o4-GfO" secondAttribute="leading" constant="50" id="FnS-HW-7nM"/>
-                            <constraint firstAttribute="trailing" secondItem="OS1-kp-4cs" secondAttribute="trailing" id="KNT-Q5-2dH"/>
                             <constraint firstItem="OS1-kp-4cs" firstAttribute="top" secondItem="bZA-gw-6Cw" secondAttribute="bottom" constant="12" id="Pcj-7A-ekR"/>
                             <constraint firstItem="bZA-gw-6Cw" firstAttribute="top" secondItem="Q91-o4-GfO" secondAttribute="top" constant="50" id="QUS-XQ-nF2"/>
-                            <constraint firstItem="OS1-kp-4cs" firstAttribute="leading" secondItem="Q91-o4-GfO" secondAttribute="leading" id="rR3-eS-cyC"/>
+                            <constraint firstItem="OS1-kp-4cs" firstAttribute="leading" secondItem="Q91-o4-GfO" secondAttribute="leading" constant="25" id="tlP-kC-GOh"/>
+                            <constraint firstAttribute="trailing" secondItem="OS1-kp-4cs" secondAttribute="trailing" constant="25" id="ukp-V2-IcE"/>
                         </constraints>
                     </view>
                 </subviews>

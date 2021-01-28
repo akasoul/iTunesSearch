@@ -25,7 +25,7 @@ class CustomCell2: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-
+        self.view.layer.cornerRadius=35
     }
   
 }

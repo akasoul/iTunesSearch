@@ -13,7 +13,11 @@
 		310C581325BB45AE0062DD28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 310C581225BB45AE0062DD28 /* Assets.xcassets */; };
 		310C581625BB45AE0062DD28 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 310C581525BB45AE0062DD28 /* Preview Assets.xcassets */; };
 		310C581925BB45AE0062DD28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 310C581725BB45AE0062DD28 /* LaunchScreen.storyboard */; };
-		310C582225BB45C80062DD28 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310C582125BB45C80062DD28 /* Controller.swift */; };
+		310C582225BB45C80062DD28 /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310C582125BB45C80062DD28 /* TabController.swift */; };
+		310C582A25C1E8970062DD28 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310C582925C1E8970062DD28 /* Model.swift */; };
+		316CE20325C27CD0003AAD1D /* FirstTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316CE20225C27CD0003AAD1D /* FirstTabController.swift */; };
+		316CE20725C28745003AAD1D /* SecondTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316CE20625C28745003AAD1D /* SecondTabController.swift */; };
+		316CE20B25C28C6A003AAD1D /* AlbumInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316CE20A25C28C6A003AAD1D /* AlbumInfoController.swift */; };
 		CEEDA85B25C13753008BBC76 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEDA85A25C13753008BBC76 /* CustomCell.swift */; };
 		CEEDA86025C16A02008BBC76 /* CustomCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEDA85E25C16A02008BBC76 /* CustomCell2.swift */; };
 		CEEDA86125C16A02008BBC76 /* CustomCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEEDA85F25C16A02008BBC76 /* CustomCell2.xib */; };
@@ -28,7 +32,11 @@
 		310C581525BB45AE0062DD28 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		310C581825BB45AE0062DD28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		310C581A25BB45AE0062DD28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		310C582125BB45C80062DD28 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
+		310C582125BB45C80062DD28 /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
+		310C582925C1E8970062DD28 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		316CE20225C27CD0003AAD1D /* FirstTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTabController.swift; sourceTree = "<group>"; };
+		316CE20625C28745003AAD1D /* SecondTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTabController.swift; sourceTree = "<group>"; };
+		316CE20A25C28C6A003AAD1D /* AlbumInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumInfoController.swift; sourceTree = "<group>"; };
 		CEEDA85A25C13753008BBC76 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		CEEDA85E25C16A02008BBC76 /* CustomCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell2.swift; sourceTree = "<group>"; };
 		CEEDA85F25C16A02008BBC76 /* CustomCell2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCell2.xib; sourceTree = "<group>"; };
@@ -65,6 +73,11 @@
 			isa = PBXGroup;
 			children = (
 				310C580C25BB45AD0062DD28 /* AppDelegate.swift */,
+				310C582125BB45C80062DD28 /* TabController.swift */,
+				316CE20225C27CD0003AAD1D /* FirstTabController.swift */,
+				316CE20625C28745003AAD1D /* SecondTabController.swift */,
+				316CE20A25C28C6A003AAD1D /* AlbumInfoController.swift */,
+				310C582925C1E8970062DD28 /* Model.swift */,
 				CEEDA85E25C16A02008BBC76 /* CustomCell2.swift */,
 				CEEDA85F25C16A02008BBC76 /* CustomCell2.xib */,
 				CEEDA85A25C13753008BBC76 /* CustomCell.swift */,
@@ -74,7 +87,6 @@
 				310C581725BB45AE0062DD28 /* LaunchScreen.storyboard */,
 				310C581A25BB45AE0062DD28 /* Info.plist */,
 				310C581425BB45AE0062DD28 /* Preview Content */,
-				310C582125BB45C80062DD28 /* Controller.swift */,
 			);
 			path = testapp_iOS_ForaSoft;
 			sourceTree = "<group>";
@@ -158,12 +170,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				310C582A25C1E8970062DD28 /* Model.swift in Sources */,
+				316CE20725C28745003AAD1D /* SecondTabController.swift in Sources */,
 				310C580D25BB45AD0062DD28 /* AppDelegate.swift in Sources */,
 				310C580F25BB45AD0062DD28 /* SceneDelegate.swift in Sources */,
 				CEEDA85B25C13753008BBC76 /* CustomCell.swift in Sources */,
 				CEEDA86025C16A02008BBC76 /* CustomCell2.swift in Sources */,
 				310C581125BB45AD0062DD28 /* ContentView.swift in Sources */,
-				310C582225BB45C80062DD28 /* Controller.swift in Sources */,
+				316CE20325C27CD0003AAD1D /* FirstTabController.swift in Sources */,
+				310C582225BB45C80062DD28 /* TabController.swift in Sources */,
+				316CE20B25C28C6A003AAD1D /* AlbumInfoController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
