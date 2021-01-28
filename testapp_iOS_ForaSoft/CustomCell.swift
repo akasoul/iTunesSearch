@@ -2,7 +2,7 @@
 //  CustomCell.swift
 //  testapp_iOS_ForaSoft
 //
-//  Created by User on 27.01.2021.
+//  Created by Anton Voloshuk on 27.01.2021.
 //
 
 import Foundation

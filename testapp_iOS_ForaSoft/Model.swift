@@ -50,9 +50,20 @@ struct album{
 class Model{
     var response: jsonStruct?
     var albums: [album]=[]
-    var artworks:[UIImage?]=[]
-    var albumsId:[Int]=[]
-    
+
+    var searchHistory: [String]=[]{
+        didSet{
+            UserDefaults.standard.setValue(self.searchHistory, forKey: "searchHistory")
+        }
+    }
+
+    var work: DispatchWorkItem?
+    init(){
+        let tmp=UserDefaults.standard.value(forKey: "searchHistory") as! [String]?
+        if(tmp != nil){
+            self.searchHistory=tmp!
+        }
+    }
     func newAlbumRequest(item: Int){
         if item>=self.albums.count{
             return
@@ -60,6 +71,7 @@ class Model{
         if self.albums[item].songs != nil{
             return
         }
+        print("new search")
         var albumsResponse: jsonStruct?
         var path = "https://itunes.apple.com/search?term="
         path.append(self.albums[item].name.replacingOccurrences(of: " ", with: "%20"))
@@ -100,13 +112,21 @@ class Model{
         }
     }
     func newRequest(input: String){
+        if(self.work != nil){
+            self.work!.cancel()
+        }
+        self.work=DispatchWorkItem(block: { self.newRequestTask(input: input) })
+        self.work!.perform()
+    }
+    func newRequestTask(input: String){
         if input==""{
             return
         }
+        self.searchHistory.append(input)
         self.albums=[]
-        self.artworks=[]
-        self.albumsId=[]
-        DispatchQueue.global().sync {
+
+        
+        DispatchQueue.global().sync{
             var path = "https://itunes.apple.com/search?term="
             path.append(input.replacingOccurrences(of: " ", with: "%20"))
             path.append("&entity=album&limit=1000")
@@ -159,6 +179,7 @@ class Model{
             
             DispatchQueue.global().async{
                 for i in 0..<self.albums.count{
+                    if(i<self.albums.count){
                     if(self.albums[i].songs != nil){
                         print("Album: ",self.albums[i].name,".Songs were found")
                         continue
@@ -197,10 +218,15 @@ class Model{
                                     }
                                 }
                             }
-                            self.albums[i].songs=songs
+                            if(self.searchHistory.last == input){
+                                if(i<self.albums.count){
+                                self.albums[i].songs=songs
+                                }
+                            }
                         }
                     }
                 }
+            }
             }
             
         }

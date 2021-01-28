@@ -2,7 +2,7 @@
 //  PopUpVC.swift
 //  testapp_iOS_ForaSoft
 //
-//  Created by User on 28.01.2021.
+//  Created by Anton Voloshuk on 28.01.2021.
 //
 
 import UIKit

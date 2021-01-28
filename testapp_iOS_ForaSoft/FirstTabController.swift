@@ -13,12 +13,10 @@ class firstTabController: UINavigationController,UISearchBarDelegate,UICollectio
     let info = AlbumInfoController()
     let searchBar=UISearchBar()
     let collectionViewLayout=UICollectionViewLayout()
-    
+    var collectionView: UICollectionView?
     var showCollection=true
-    let model=Model()
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //return self.albums.count
-        return self.model.albums.count
+        return (self.parent as! tabController).model.albums.count
     }
     
     
@@ -35,11 +33,9 @@ class firstTabController: UINavigationController,UISearchBarDelegate,UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView
             .dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCell2
-//        if(self.artworks[indexPath.item] != nil){
-//            cell.data=CustomData(title: self.albums[indexPath.item], url: "dsds", backgroundImage: self.artworks[indexPath.item]!)
-//        }
-        if(self.model.albums[indexPath.item].cover != nil){
-            cell.data=CustomData(title: self.model.albums[indexPath.item].name, url: "", backgroundImage: self.model.albums[indexPath.item].cover!)
+
+        if((self.parent as! tabController).model.albums[indexPath.item].cover != nil){
+            cell.data=CustomData(title: (self.parent as! tabController).model.albums[indexPath.item].name, url: "", backgroundImage: (self.parent as! tabController).model.albums[indexPath.item].cover!)
         }
         return cell
     }
@@ -56,6 +52,12 @@ class firstTabController: UINavigationController,UISearchBarDelegate,UICollectio
         return 0
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell=self.collectionView!.cellForItem(at: indexPath) as! CustomCell2
+  print(cell.data!.title)
+        (self.parent as! tabController).model.newAlbumRequest(item: indexPath.item)
+        self.showPopup(index: indexPath.item)
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 200, height: 200)
@@ -66,48 +68,13 @@ class firstTabController: UINavigationController,UISearchBarDelegate,UICollectio
         let rootVC=PopUpVC()//nibName: "PopUpVC", bundle: nil)//AlbumInfoController()
         let bundle=Bundle(for: type(of: rootVC))
         bundle.loadNibNamed("PopUpVC", owner: rootVC, options: nil)
-        //        let customView=UINib(nibName: "PopUpVC", bundle: .main)
-//        rootVC.view=custom
-
-//        rootVC.title="test title"
-//        let navVC=UINavigationController(rootViewController: rootVC)
-//        navVC.modalPresentationStyle = .popover
-//        navVC.modalTransitionStyle = .coverVertical
-//        navVC.view.frame=CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height*0.5)
-//        rootVC.navigationItem.leftBarButtonItem=UIBarButtonItem(title: "fwd")
-        rootVC.album=self.model.albums[index]
+        
+        rootVC.album=(self.parent as! tabController).model.albums[index]
         present(rootVC, animated: true)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        print("selected at: ")
-        print(indexPath.first)
-        print(indexPath.last)
-        print(indexPath.row)
-        self.model.newAlbumRequest(item: indexPath.item)
-        self.showPopup(index: indexPath.item)
-        //(self.parent as! tabController).showPopup()
-        //self.showDetailViewController(self.info, sender: nil)
-//        let newvc=UIViewController()
-//        newvc.view=UIView(frame: self.view.frame)
-//        newvc.view.backgroundColor = .yellow
-//        newvc.navigationController?.navigationItem.leftBarButtonItem=UIBarButtonItem(title: "back")
-//        self.pushViewController(newvc, animated: true)
-        
-//
-//        let rootVC=testViewController()
-//        rootVC.title="test title"
-//        let navVC=UINavigationController(rootViewController: rootVC)
-//        //navVC.view=UIView()
-//        //navVC.view.backgroundColor = .purple
-//        navVC.modalPresentationStyle = .fullScreen
-//        rootVC.navigationItem.leftBarButtonItem=UIBarButtonItem(title: "back")
-//        present(navVC, animated: true)
-        
-        //self.showCollection=false
-        //self.viewDidLoad()
-    }
 
+    
 
     
     override func viewDidLoad() {
@@ -121,26 +88,26 @@ class firstTabController: UINavigationController,UISearchBarDelegate,UICollectio
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
         layout.itemSize = CGSize(width: 100, height: 100)
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
         
         let tabBarHeight=(parent as! UITabBarController).tabBar.frame.height
 
         let collectionFrame=CGRect(x: 0, y: self.view.frame.height*0.2, width: self.view.frame.width, height: self.view.frame.height*0.8-tabBarHeight)
         
         
-        let collectionView=UICollectionView(frame: .zero, collectionViewLayout: layout)
+        self.collectionView=UICollectionView(frame: .zero, collectionViewLayout: layout)
         let customCellNib=UINib(nibName: "CustomCell2", bundle: .main)
-        collectionView.register(customCellNib, forCellWithReuseIdentifier: "cell")
-        collectionView.frame=collectionFrame
-        collectionView.isScrollEnabled=true
-        collectionView.scrollIndicatorInsets = .zero
-        collectionView.showsHorizontalScrollIndicator=true
-        collectionView.isPagingEnabled=true
-        collectionView.contentInset = .zero
-        collectionView.delegate=self
-        collectionView.dataSource=self
-        collectionView.backgroundColor=UIColor.lightGray
-        view.addSubview(collectionView)
+        self.collectionView!.register(customCellNib, forCellWithReuseIdentifier: "cell")
+        self.collectionView!.frame=collectionFrame
+        self.collectionView!.isScrollEnabled=true
+        self.collectionView!.scrollIndicatorInsets = .zero
+        self.collectionView!.showsHorizontalScrollIndicator=true
+        self.collectionView!.isPagingEnabled=true
+        self.collectionView!.contentInset = .zero
+        self.collectionView!.delegate=self
+        self.collectionView!.dataSource=self
+        self.collectionView!.backgroundColor=UIColor.lightGray
+        view.addSubview(self.collectionView!)
     }
     
    
@@ -150,101 +117,9 @@ class firstTabController: UINavigationController,UISearchBarDelegate,UICollectio
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if(self.searchBar.text != nil){
-            self.model.newRequest(input: self.searchBar.text!)
+            (self.parent as! tabController).model.newRequest(input: self.searchBar.text!)
         }
         self.viewDidLoad()
     }
-    /*
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if(self.searchBar.text != nil){
-            
-            self.model.newRequest(input: self.searchBar.text!)
-            var path = "https://itunes.apple.com/search?term="
-            (parent as! tabController).hst.arr.append(self.searchBar.text!)
-            path.append(self.searchBar.text!.replacingOccurrences(of: " ", with: "%20"))
-            path.append("&entity=song&country=ru&limit=1000")
-            let url = URL(string: path)!
-            var answer=""
-            let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
-                guard let data = data else { return }
-                answer=(String(data: data, encoding: .utf8)!)
-                do{
-                    self.response = try JSONDecoder().decode(jsonStruct.self, from: answer.data(using: .utf8)!)
-                }
-                catch{
-                    print(error)
-                }
-            }
-            
-            task.resume()
-            while !task.progress.isFinished{
-                sleep(1)
-            }
-            var imgLinks=[String]()
-            for i in 0..<self.response!.results.count{
-                if(self.response!.results[i].collectionName != nil && self.response!.results[i].artworkUrl100 != nil){
-                    var append=true
-                    for j in 0..<self.albums.count{
-                        if(self.albums[j]==self.response!.results[i].collectionName){
-                            append=false
-                        }
-                    }
-                    if(append){
-                        self.albums.append(self.response!.results[i].collectionName!)
-                        self.albumsId.append(self.response!.results[i].collectionId!)
-                        imgLinks.append(self.response!.results[i].artworkUrl100!)
-                        
-                    }
-                }
-            }
-            
-            var albumPath="https://itunes.apple.com/lookup?id="
-            albumPath+=String(self.albumsId[0])
-            let albumURL=URL(string: albumPath)!
-            let task2 = URLSession.shared.dataTask(with: albumURL) {(data, response, error) in
-                guard let data = data else { return }
-                answer=(String(data: data, encoding: .utf8)!)
-                do{
-                    self.response = try JSONDecoder().decode(jsonStruct.self, from: answer.data(using: .utf8)!)
-                }
-                catch{
-                    print(error)
-                }
-            }
-            
-            task2.resume()
-            while !task2.progress.isFinished{
-                sleep(1)
-            }
-            
-            self.artworks=[UIImage?].init(repeating: nil, count: self.albums.count)
-            
-            let group=DispatchGroup()
-            group.enter()
-            
-            for i in 0..<self.artworks.count{
-                DispatchQueue.global().async{
-                    let url=URL(string: imgLinks[i])!
-                    var img: UIImage?
-                    var imgData: Data?
-                    do{
-                    imgData = try Data(contentsOf: url)
-                    }
-                    catch{
-                    }
-                    if(imgData != nil){
-                        img=UIImage(data: imgData!)
-                    }
-                    self.artworks[i]=img
-                    print("exit thread")
-                    DispatchQueue.main.sync{
-                    self.view.endEditing(true)
-                    self.viewDidLoad()
-                    }
-                }
-            }
-            
-        }
-    }
-    */
+    
  }
