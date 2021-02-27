@@ -1,6 +1,6 @@
 //
 //  CustomCell2.swift
-//  testapp_iOS_ForaSoft
+//  iTunesSearch
 //
 //  Created by User on 27.01.2021.
 //

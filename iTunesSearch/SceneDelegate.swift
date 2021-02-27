@@ -1,6 +1,6 @@
 //
 //  SceneDelegate.swift
-//  testapp_iOS_ForaSoft
+//  iTunesSearch
 //
 //  Created by Anton Voloshuk on 22.01.2021.
 //

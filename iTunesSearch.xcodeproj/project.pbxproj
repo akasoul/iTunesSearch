@@ -26,7 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		310C580925BB45AD0062DD28 /* testapp_iOS_ForaSoft.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testapp_iOS_ForaSoft.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		310C580925BB45AD0062DD28 /* iTunesSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		310C580C25BB45AD0062DD28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		310C580E25BB45AD0062DD28 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		310C581025BB45AD0062DD28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -60,7 +60,7 @@
 		310C580025BB45AD0062DD28 = {
 			isa = PBXGroup;
 			children = (
-				310C580B25BB45AD0062DD28 /* testapp_iOS_ForaSoft */,
+				310C580B25BB45AD0062DD28 /* iTunesSearch */,
 				310C580A25BB45AD0062DD28 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -68,12 +68,12 @@
 		310C580A25BB45AD0062DD28 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				310C580925BB45AD0062DD28 /* testapp_iOS_ForaSoft.app */,
+				310C580925BB45AD0062DD28 /* iTunesSearch.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		310C580B25BB45AD0062DD28 /* testapp_iOS_ForaSoft */ = {
+		310C580B25BB45AD0062DD28 /* iTunesSearch */ = {
 			isa = PBXGroup;
 			children = (
 				310C580C25BB45AD0062DD28 /* AppDelegate.swift */,
@@ -94,7 +94,7 @@
 				310C581A25BB45AE0062DD28 /* Info.plist */,
 				310C581425BB45AE0062DD28 /* Preview Content */,
 			);
-			path = testapp_iOS_ForaSoft;
+			path = iTunesSearch;
 			sourceTree = "<group>";
 		};
 		310C581425BB45AE0062DD28 /* Preview Content */ = {
@@ -108,9 +108,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		310C580825BB45AD0062DD28 /* testapp_iOS_ForaSoft */ = {
+		310C580825BB45AD0062DD28 /* iTunesSearch */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 310C581D25BB45AE0062DD28 /* Build configuration list for PBXNativeTarget "testapp_iOS_ForaSoft" */;
+			buildConfigurationList = 310C581D25BB45AE0062DD28 /* Build configuration list for PBXNativeTarget "iTunesSearch" */;
 			buildPhases = (
 				310C580525BB45AD0062DD28 /* Sources */,
 				310C580625BB45AD0062DD28 /* Frameworks */,
@@ -120,9 +120,9 @@
 			);
 			dependencies = (
 			);
-			name = testapp_iOS_ForaSoft;
+			name = iTunesSearch;
 			productName = testapp_iOS_ForaSoft;
-			productReference = 310C580925BB45AD0062DD28 /* testapp_iOS_ForaSoft.app */;
+			productReference = 310C580925BB45AD0062DD28 /* iTunesSearch.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -139,7 +139,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 310C580425BB45AD0062DD28 /* Build configuration list for PBXProject "testapp_iOS_ForaSoft" */;
+			buildConfigurationList = 310C580425BB45AD0062DD28 /* Build configuration list for PBXProject "iTunesSearch" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -152,7 +152,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				310C580825BB45AD0062DD28 /* testapp_iOS_ForaSoft */,
+				310C580825BB45AD0062DD28 /* iTunesSearch */,
 			);
 		};
 /* End PBXProject section */
@@ -327,15 +327,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"testapp_iOS_ForaSoft/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"iTunesSearch/Preview Content\"";
 				DEVELOPMENT_TEAM = 5AWCXD32G9;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = testapp_iOS_ForaSoft/Info.plist;
+				INFOPLIST_FILE = iTunesSearch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "akasoul.testapp-iOS-ForaSoft";
+				PRODUCT_BUNDLE_IDENTIFIER = akasoul.iTunesSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -348,15 +348,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"testapp_iOS_ForaSoft/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"iTunesSearch/Preview Content\"";
 				DEVELOPMENT_TEAM = 5AWCXD32G9;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = testapp_iOS_ForaSoft/Info.plist;
+				INFOPLIST_FILE = iTunesSearch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "akasoul.testapp-iOS-ForaSoft";
+				PRODUCT_BUNDLE_IDENTIFIER = akasoul.iTunesSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -366,7 +366,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		310C580425BB45AD0062DD28 /* Build configuration list for PBXProject "testapp_iOS_ForaSoft" */ = {
+		310C580425BB45AD0062DD28 /* Build configuration list for PBXProject "iTunesSearch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				310C581B25BB45AE0062DD28 /* Debug */,
@@ -375,7 +375,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		310C581D25BB45AE0062DD28 /* Build configuration list for PBXNativeTarget "testapp_iOS_ForaSoft" */ = {
+		310C581D25BB45AE0062DD28 /* Build configuration list for PBXNativeTarget "iTunesSearch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				310C581E25BB45AE0062DD28 /* Debug */,

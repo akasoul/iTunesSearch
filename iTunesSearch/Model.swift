@@ -1,6 +1,6 @@
 //
 //  Model.swift
-//  testapp_iOS_ForaSoft
+//  iTunes search
 //
 //  Created by Anton Voloshuk on 27.01.2021.
 //

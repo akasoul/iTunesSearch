@@ -1,6 +1,6 @@
 //
 //  SecondTabController.swift
-//  testapp_iOS_ForaSoft
+//  iTunesSearch
 //
 //  Created by Anton Voloshuk on 28.01.2021.
 //
